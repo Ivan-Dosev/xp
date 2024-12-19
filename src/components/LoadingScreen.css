@@ -10,7 +10,7 @@
 }
 
 .loading-logo {
-    width: 80%; /* Adjust size as needed */
+    width: 40%; /* Adjust size as needed */
     max-width: 600px; /* Optional: Limit maximum size */
     height: auto;
     margin-bottom: 20px; /* You can remove this if you don't want extra space */
