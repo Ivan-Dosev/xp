@@ -19,45 +19,86 @@ const App = () => {
     { 
       id: '001', 
       title: 'Soccer Badge\nCollection 2024 / 2025', 
-      image: '/images/Still_Soccer.png', 
-      gif: '/images/gifs/FBALL.gif' 
+      image: '/images/target/Still_Soccer.png', 
+      gif: '/images/gifs/FBALL.gif',
+      category: 'target'
     },
     { 
       id: '002', 
       title: 'Icehockey Badge\nCollection 2024 / 2025', 
-      image: '/images/Still_Icehockey.png', 
-      gif: '/images/gifs/ICEHOCKEY.gif' 
+      image: '/images/target/Still_Icehockey.png', 
+      gif: '/images/gifs/ICEHOCKEY.gif',
+      category: 'target'
     },
     { 
       id: '003', 
       title: 'Handball Badge\nCollection 2024 / 2025', 
-      image: '/images/Still_Handball.png', 
-      gif: '/images/gifs/HANDBALL.gif' 
+      image: '/images/target/Still_Handball.png', 
+      gif: '/images/gifs/HANDBALL.gif',
+      category: 'target'
     },
     { 
       id: '004', 
       title: 'Football Badge\nCollection 2024 / 2025', 
-      image: '/images/Still_Football.png', 
-      gif: '/images/gifs/AF.gif' 
+      image: '/images/target/Still_Football.png', 
+      gif: '/images/gifs/AF.gif',
+      category: 'target'
     },
     { 
       id: '005', 
       title: 'Basketball Badge\nCollection 2024 / 2025', 
-      image: '/images/Still_Basketball.png', 
-      gif: '/images/gifs/BBALL.gif' 
+      image: '/images/target/Still_Basketball.png', 
+      gif: '/images/gifs/BBALL.gif',
+      category: 'target'
     },
     { 
       id: '006', 
       title: 'Baseball Badge\nCollection 2024 / 2025', 
-      image: '/images/Still_Baseball.png', 
-      gif: '/images/gifs/BASEBALL.gif' 
+      image: '/images/target/Still_Baseball.png', 
+      gif: '/images/gifs/BASEBALL.gif',
+      category: 'target'
+    },
+    { 
+      id: '007', 
+      title: 'Loyalty Badge\nSeason 2024 / 2025', 
+      image: '/images/loyalty/Badge1.png',
+      gif: '/images/loyalty/Badge1.png',
+      category: 'loyalty'
+    },
+    { 
+      id: '008', 
+      title: 'Loyalty Badge\nSeason 2024 / 2025', 
+      image: '/images/loyalty/Badge2.png', 
+      gif: '/images/loyalty/Badge2.png',
+      category: 'loyalty'
+    },
+    { 
+      id: '009', 
+      title: 'Official Badge\nSeason 2024 / 2025', 
+      image: '/images/official/Football_closeup.png',
+      gif: '/images/official/Football_closeup.png',
+      category: 'official'
+    },
+    { 
+      id: '010', 
+      title: 'Official Badge\nSeason 2024 / 2025', 
+      image: '/images/official/Basketball_closeup.png',
+      gif: '/images/official/Basketball_closeup.png',
+      category: 'official'
+    },
+    { 
+      id: '011', 
+      title: 'Official Badge\nSeason 2024 / 2025', 
+      image: '/images/official/Baseball_closeup.png',
+      gif: '/images/official/Baseball_closeup.png',
+      category: 'official'
     },
   ];  
 
   const menuCategories = [
     { key: 'all', label: 'All Badges' },
-    { key: 'soccer', label: 'Target Badges' },
-    { key: 'hockey', label: 'Loyalty Badges' },
+    { key: 'target', label: 'Target Badges' },
+    { key: 'loyalty', label: 'Loyalty Badges' },
     { key: 'official', label: 'Official Badges' },
   ];
 
@@ -103,6 +144,14 @@ const App = () => {
     />;
   }
 
+  // Add this function to filter badges based on active category
+  const getFilteredBadges = () => {
+    if (activeCategory === 'all') {
+      return badges;
+    }
+    return badges.filter(badge => badge.category === activeCategory);
+  };
+
   return (
     <div className="app">
       <header className="app-header">
@@ -130,12 +179,12 @@ const App = () => {
           <BadgeDetails badge={selectedBadge} onBack={() => setSelectedBadge(null)} />
         ) : (
           <div className="badge-list">
-            {badges.map((badge, index) => (
+            {getFilteredBadges().map((badge, index) => (
               <BadgeCard
                 key={badge.id}
                 badge={badge}
                 onClick={setSelectedBadge}
-                style={{ zIndex: badges.length - index }} // Ensure proper stacking order
+                style={{ zIndex: badges.length - index }}
               />
             ))}
           </div>

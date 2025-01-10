@@ -13,28 +13,56 @@ const MyRewards = ({ onBack, onNavigate, activePage = 'my-rewards' }) => {
     { key: 'other', label: 'OTHER' },
   ];
 
-  // Sample rewards badges data
+  // Updated rewards badges data with categories
   const rewardBadges = [
     { 
       id: 'r001', 
-      title: 'Reward Badge #001\nCollection  2024/2025',
-      image: '/images/Basketball_closeup.png'
+      title: 'Stadion1\nCollection 2024/2025',
+      image: '/images/rewards/stadium/Stadion1.png',
+      category: 'stadium'
     },
     { 
       id: 'r002', 
-      title: 'Reward Badge #002\nCollection  2024/2025',
-      image: '/images/Football_closeup.png'
+      title: 'Stadion2\nCollection 2024/2025',
+      image: '/images/rewards/stadium/Stadion2.png',
+      category: 'stadium'
     },
     { 
       id: 'r003', 
-      title: 'Reward Badge#004\nCollection  2024/2025',
-      image: '/images/Baseball_closeup.png'
+      title: 'Stadion3\nCollection 2024/2025',
+      image: '/images/rewards/stadium/Stadion3.png',
+      category: 'stadium'
+    },
+    { 
+      id: 'r004', 
+      title: 'Player1\nCollection 2024/2025',
+      image: '/images/rewards/player/Player1.png',
+      category: 'other'
+    },
+    { 
+      id: 'r005', 
+      title: 'Player2\nCollection 2024/2025',
+      image: '/images/rewards/player/Player2.png',
+      category: 'other'
+    },
+    { 
+      id: 'r006', 
+      title: 'Player3\nCollection 2024/2025',
+      image: '/images/rewards/player/Player3.png',
+      category: 'other'
     }
   ];
 
   const handleBadgeClick = (badge) => {
-    // Handle badge click if needed
     console.log('Clicked reward badge:', badge);
+  };
+
+  // Add filter function for rewards
+  const getFilteredRewards = () => {
+    if (activeCategory === 'all') {
+      return rewardBadges;
+    }
+    return rewardBadges.filter(badge => badge.category === activeCategory);
   };
 
   return (
@@ -61,7 +89,7 @@ const MyRewards = ({ onBack, onNavigate, activePage = 'my-rewards' }) => {
       <div className="rewards-content">
         <h2>My Rewards</h2>
         <div className="badge-list">
-          {rewardBadges.map((badge, index) => (
+          {getFilteredRewards().map((badge, index) => (
             <BadgeCard
               key={badge.id}
               badge={badge}
